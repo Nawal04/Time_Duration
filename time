@@ -1,0 +1,47 @@
+package Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class TimeDuration {
+	
+	public int seconds;
+	
+	public TimeDuration(int seconds) {
+		this.seconds = seconds;
+	}
+	
+	public void start() throws Exception {
+		
+		if(seconds < 0)
+			throw new Exception("Bad Value Exception");
+			
+		int hours = seconds / 3600;
+		int minutes = (seconds % 3600) / 60;
+		int seconds_ = seconds % 60;
+		
+
+		String time = "";
+		if(hours == 0 && minutes == 0) {
+			 time = String.format("%02ds",seconds_);
+		}else if (hours == 0) {
+			 time = String.format("%02dm %02ds",  minutes, seconds_);
+		} else {
+			 time = String.format("%02dh %02dm %02ds", hours, minutes, seconds_);
+		}
+		System.out.println(time);
+		
+	}
+	
+	public static void main(String[] args) throws Exception {
+		TimeDuration seconds0 = new TimeDuration(0);
+		seconds0.start();
+		TimeDuration seconds1 = new TimeDuration(732);
+		seconds1.start();
+		TimeDuration seconds2 = new TimeDuration(7242);
+		seconds2.start();
+//		For exception 
+//		TimeDuration seconds3 = new TimeDuration(-33);
+//		seconds3.start();
+	}	
+
+}
